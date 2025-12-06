@@ -1,0 +1,16 @@
+/.claude/
+/.idea/
+/Library/
+/Logs/
+/obj/
+/Packages/
+/ProjectSettings/
+/Temp/
+/UserSettings/
+*.csproj
+
+/CLAUDE.md
+/Code_Guidelines.md
+/horizOn SDK.sln.DotSettings
+/horizOn SDK.sln
+/sample_config.json

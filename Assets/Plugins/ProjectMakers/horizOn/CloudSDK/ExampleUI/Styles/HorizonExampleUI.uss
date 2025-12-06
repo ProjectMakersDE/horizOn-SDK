@@ -1,0 +1,257 @@
+/* Root Container */
+.root-container {
+    flex-grow: 1;
+    background-color: rgb(45, 45, 45);
+}
+
+/* Header */
+.header {
+    background-color: rgb(231, 138, 83);
+    padding: 20px;
+    align-items: center;
+    border-bottom-width: 2px;
+    border-bottom-color: rgb(211, 118, 63);
+    min-height: 80px;
+}
+
+.header-title {
+    font-size: 28px;
+    color: white;
+    -unity-font-style: bold;
+    margin-bottom: 5px;
+    white-space: normal;
+    -unity-text-align: middle-center;
+}
+
+.header-subtitle {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    white-space: normal;
+    -unity-text-align: middle-center;
+}
+
+/* Main Content */
+.main-content {
+    flex-grow: 1;
+    padding: 10px;
+}
+
+/* Section */
+.section {
+    background-color: rgb(56, 56, 56);
+    margin: 8px;
+    padding: 16px;
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: rgb(70, 70, 70);
+}
+
+.section-title {
+    font-size: 18px;
+    color: rgb(231, 138, 83);
+    -unity-font-style: bold;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom-width: 2px;
+    border-bottom-color: rgb(231, 138, 83);
+}
+
+.section-content {
+    padding-top: 8px;
+}
+
+.subsection-title {
+    font-size: 14px;
+    color: rgb(200, 180, 160);
+    -unity-font-style: bold;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(100, 100, 100);
+}
+
+/* Buttons */
+.primary-button {
+    background-color: rgb(231, 138, 83);
+    color: white;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin: 4px;
+    border-width: 0;
+    font-size: 14px;
+    -unity-font-style: bold;
+}
+
+.primary-button:hover {
+    background-color: rgb(211, 118, 63);
+}
+
+.primary-button:active {
+    background-color: rgb(191, 98, 43);
+}
+
+.action-button {
+    background-color: rgb(231, 138, 83);
+    color: white;
+    border-radius: 4px;
+    padding: 10px 16px;
+    margin: 4px;
+    border-width: 0;
+    font-size: 13px;
+    flex-grow: 1;
+}
+
+.action-button:hover {
+    background-color: rgb(211, 118, 63);
+}
+
+.action-button:active {
+    background-color: rgb(191, 98, 43);
+}
+
+.secondary-button {
+    background-color: rgb(90, 90, 90);
+    color: rgb(220, 220, 220);
+    border-radius: 4px;
+    padding: 8px 16px;
+    margin: 4px;
+    border-width: 0;
+    font-size: 12px;
+    flex-grow: 1;
+}
+
+.secondary-button:hover {
+    background-color: rgb(110, 110, 110);
+}
+
+.secondary-button:active {
+    background-color: rgb(70, 70, 70);
+}
+
+Button:disabled {
+    opacity: 0.5;
+}
+
+.button-row {
+    flex-direction: row;
+    margin: 4px 0;
+}
+
+/* Input Fields */
+.input-field {
+    margin: 6px 0;
+    padding: 4px;
+}
+
+.input-field > Label {
+    min-width: 120px;
+    color: rgb(200, 200, 200);
+    font-size: 13px;
+}
+
+.input-field > TextInput {
+    background-color: rgb(42, 42, 42);
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: rgb(70, 70, 70);
+    padding: 6px;
+    font-size: 13px;
+    color: rgb(220, 220, 220);
+}
+
+.input-field > TextInput:focus {
+    border-color: rgb(231, 138, 83);
+    border-width: 2px;
+}
+
+/* Response Fields */
+.response-field {
+    margin: 8px 0;
+    padding: 4px;
+}
+
+.response-field > Label {
+    min-width: 120px;
+    color: rgb(200, 200, 200);
+    font-size: 12px;
+    -unity-font-style: bold;
+}
+
+.response-field > TextInput {
+    background-color: rgb(35, 35, 35);
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: rgb(70, 70, 70);
+    padding: 10px;
+    min-height: 100px;
+    font-size: 12px;
+    color: rgb(220, 220, 220);
+    white-space: normal;
+}
+
+/* Readonly Fields */
+.readonly-field {
+    margin: 6px 0;
+    padding: 4px;
+}
+
+.readonly-field > Label {
+    min-width: 120px;
+    color: rgb(180, 180, 180);
+    font-size: 12px;
+}
+
+.readonly-field > TextInput {
+    background-color: rgb(50, 50, 50);
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: rgb(70, 70, 70);
+    padding: 6px;
+    font-size: 12px;
+    color: rgb(200, 200, 200);
+}
+
+/* Status Labels */
+.status-label {
+    margin: 8px 0;
+    padding: 8px 12px;
+    background-color: rgb(50, 50, 50);
+    border-radius: 4px;
+    border-left-width: 4px;
+    border-left-color: rgb(231, 138, 83);
+    font-size: 13px;
+    color: rgb(220, 220, 220);
+}
+
+/* Dropdown */
+.input-field > DropdownField {
+    background-color: rgb(42, 42, 42);
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: rgb(70, 70, 70);
+    color: rgb(220, 220, 220);
+}
+
+/* Footer */
+.footer {
+    background-color: rgb(35, 35, 35);
+    padding: 12px 20px;
+    align-items: center;
+    border-top-width: 1px;
+    border-top-color: rgb(70, 70, 70);
+}
+
+.footer-text {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Scroll View */
+ScrollView {
+    flex-grow: 1;
+}
+
+ScrollView > #unity-content-container {
+    flex-grow: 1;
+}

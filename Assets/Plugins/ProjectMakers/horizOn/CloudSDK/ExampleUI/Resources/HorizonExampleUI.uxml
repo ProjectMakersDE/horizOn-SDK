@@ -1,0 +1,165 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement name="root" class="root-container">
+        <!-- Header -->
+        <ui:VisualElement class="header">
+            <ui:Label text="horizOn SDK Example" class="header-title" />
+            <ui:Label text="Test all SDK features and view server responses" class="header-subtitle" />
+        </ui:VisualElement>
+
+        <!-- Main Content -->
+        <ui:ScrollView class="main-content">
+            <!-- Connection Section -->
+            <ui:VisualElement class="section">
+                <ui:Label text="Connection" class="section-title" />
+                <ui:VisualElement class="section-content">
+                    <ui:Button text="Enter Play Mode" name="btn-play-mode" class="primary-button" />
+                    <ui:Button text="Initialize SDK" name="btn-init" class="primary-button" />
+                    <ui:Button text="Connect to Server" name="btn-connect" class="primary-button" />
+                    <ui:Label text="Status: Not Connected" name="lbl-connection-status" class="status-label" />
+                    <ui:TextField name="txt-server-url" label="Server URL" readonly="true" class="readonly-field" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- Authentication Section -->
+            <ui:VisualElement class="section">
+                <ui:Label text="Authentication" class="section-title" />
+                <ui:VisualElement class="section-content">
+                    <ui:TextField name="txt-email" label="Email (optional for anonymous)" class="input-field" />
+                    <ui:TextField name="txt-password" label="Password (optional for anonymous)" password="true" class="input-field" />
+                    <ui:TextField name="txt-displayname" label="Display Name" class="input-field" />
+                    <ui:TextField name="txt-anonymous-token" label="Anonymous Token (optional)" class="input-field" />
+                    <ui:VisualElement class="button-row">
+                        <ui:Button text="Sign Up" name="btn-signup" class="action-button" />
+                        <ui:Button text="Sign In" name="btn-signin" class="action-button" />
+                        <ui:Button text="Anonymous" name="btn-signin-anonymous" class="action-button" />
+                        <ui:Button text="Sign Out" name="btn-signout" class="action-button" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="button-row">
+                        <ui:Button text="Check Auth" name="btn-checkauth" class="secondary-button" />
+                        <ui:Button text="Change Name" name="btn-changename" class="secondary-button" />
+                    </ui:VisualElement>
+                    <ui:Label text="Not Signed In" name="lbl-auth-status" class="status-label" />
+
+                    <!-- Password Reset Section -->
+                    <ui:Label text="Password Reset" class="subsection-title" />
+                    <ui:TextField name="txt-forgot-email" label="Email for Password Reset" class="input-field" />
+                    <ui:Button text="Forgot Password" name="btn-forgot-password" class="secondary-button" />
+                    <ui:TextField name="txt-reset-token" label="Reset Token (from email)" class="input-field" />
+                    <ui:TextField name="txt-new-password" label="New Password" password="true" class="input-field" />
+                    <ui:Button text="Reset Password" name="btn-reset-password" class="secondary-button" />
+
+                    <!-- Email Verification Section -->
+                    <ui:Label text="Email Verification" class="subsection-title" />
+                    <ui:TextField name="txt-verify-token" label="Verification Token (from email)" class="input-field" />
+                    <ui:Button text="Verify Email" name="btn-verify-email" class="secondary-button" />
+                    <ui:TextField name="txt-auth-response" multiline="true" readonly="true" class="response-field" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- Remote Config Section -->
+            <ui:VisualElement class="section">
+                <ui:Label text="Remote Configuration" class="section-title" />
+                <ui:VisualElement class="section-content">
+                    <ui:VisualElement class="button-row">
+                        <ui:Button text="Load All Configs" name="btn-config-all" class="action-button" />
+                        <ui:Button text="Clear Cache" name="btn-config-clear" class="secondary-button" />
+                    </ui:VisualElement>
+                    <ui:TextField name="txt-config-key" label="Config Key" class="input-field" />
+                    <ui:Button text="Get Config" name="btn-config-get" class="secondary-button" />
+                    <ui:TextField name="txt-config-response" multiline="true" readonly="true" class="response-field" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- News Section -->
+            <ui:VisualElement class="section">
+                <ui:Label text="News" class="section-title" />
+                <ui:VisualElement class="section-content">
+                    <ui:TextField name="txt-news-limit" label="Limit" value="20" class="input-field" />
+                    <ui:TextField name="txt-news-language" label="Language Code (optional)" class="input-field" />
+                    <ui:VisualElement class="button-row">
+                        <ui:Button text="Load News" name="btn-news-load" class="action-button" />
+                        <ui:Button text="Clear Cache" name="btn-news-clear" class="secondary-button" />
+                    </ui:VisualElement>
+                    <ui:TextField name="txt-news-response" multiline="true" readonly="true" class="response-field" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- Leaderboard Section -->
+            <ui:VisualElement class="section">
+                <ui:Label text="Leaderboard" class="section-title" />
+                <ui:VisualElement class="section-content">
+                    <ui:TextField name="txt-score" label="Score" value="1000" class="input-field" />
+                    <ui:Button text="Submit Score" name="btn-leaderboard-submit" class="action-button" />
+                    <ui:VisualElement class="button-row">
+                        <ui:Button text="Get Top" name="btn-leaderboard-top" class="secondary-button" />
+                        <ui:Button text="Get Rank" name="btn-leaderboard-rank" class="secondary-button" />
+                        <ui:Button text="Get Around" name="btn-leaderboard-around" class="secondary-button" />
+                    </ui:VisualElement>
+                    <ui:TextField name="txt-leaderboard-response" multiline="true" readonly="true" class="response-field" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- Cloud Save Section -->
+            <ui:VisualElement class="section">
+                <ui:Label text="Cloud Save" class="section-title" />
+                <ui:VisualElement class="section-content">
+                    <ui:DropdownField name="dd-save-content-type" label="Content Type" class="input-field" />
+                    <ui:TextField name="txt-save-data" label="Data (JSON text or Base64 for binary)" multiline="true" class="input-field" value="{&quot;level&quot;: 10, &quot;coins&quot;: 500}" />
+                    <ui:VisualElement class="button-row">
+                        <ui:Button text="Save" name="btn-save-save" class="action-button" />
+                        <ui:Button text="Load" name="btn-save-load" class="action-button" />
+                    </ui:VisualElement>
+                    <ui:TextField name="txt-save-response" multiline="true" readonly="true" class="response-field" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- Gift Code Section -->
+            <ui:VisualElement class="section">
+                <ui:Label text="Gift Codes" class="section-title" />
+                <ui:VisualElement class="section-content">
+                    <ui:TextField name="txt-giftcode" label="Gift Code" value="TESTCODE2024" class="input-field" />
+                    <ui:VisualElement class="button-row">
+                        <ui:Button text="Validate" name="btn-giftcode-validate" class="action-button" />
+                        <ui:Button text="Redeem" name="btn-giftcode-redeem" class="action-button" />
+                    </ui:VisualElement>
+                    <ui:TextField name="txt-giftcode-response" multiline="true" readonly="true" class="response-field" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- Feedback Section -->
+            <ui:VisualElement class="section">
+                <ui:Label text="Feedback" class="section-title" />
+                <ui:VisualElement class="section-content">
+                    <ui:TextField name="txt-feedback-title" label="Title" class="input-field" />
+                    <ui:DropdownField name="dd-feedback-category" label="Category" class="input-field" />
+                    <ui:TextField name="txt-feedback-message" label="Message" multiline="true" class="input-field" />
+                    <ui:TextField name="txt-feedback-email" label="Email (Optional)" class="input-field" />
+                    <ui:Button text="Submit Feedback" name="btn-feedback-submit" class="action-button" />
+                    <ui:TextField name="txt-feedback-response" multiline="true" readonly="true" class="response-field" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- User Log Section -->
+            <ui:VisualElement class="section">
+                <ui:Label text="User Logs" class="section-title" />
+                <ui:VisualElement class="section-content">
+                    <ui:TextField name="txt-userlog-message" label="Message" multiline="true" class="input-field" value="User completed level 5" />
+                    <ui:DropdownField name="dd-userlog-type" label="Log Type" class="input-field" />
+                    <ui:TextField name="txt-userlog-errorcode" label="Error Code (Optional)" class="input-field" />
+                    <ui:VisualElement class="button-row">
+                        <ui:Button text="Info" name="btn-userlog-info" class="action-button" />
+                        <ui:Button text="Warn" name="btn-userlog-warn" class="action-button" />
+                        <ui:Button text="Error" name="btn-userlog-error" class="action-button" />
+                    </ui:VisualElement>
+                    <ui:Button text="Create Log" name="btn-userlog-create" class="primary-button" />
+                    <ui:TextField name="txt-userlog-response" multiline="true" readonly="true" class="response-field" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:ScrollView>
+
+        <!-- Footer -->
+        <ui:VisualElement class="footer">
+            <ui:Label text="horizOn Cloud SDK - All responses shown in real-time" class="footer-text" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

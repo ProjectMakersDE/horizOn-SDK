@@ -40,13 +40,13 @@ namespace PM.horizOn.Cloud.Manager
                 useSessionToken: false
             );
 
-            if (response.IsSuccess && response.Data != null && response.Data.Found)
+            if (response.IsSuccess && response.Data != null && response.Data.found)
             {
                 // Cache the result
-                _configCache[key] = response.Data.ConfigValue;
-                HorizonApp.Events.Publish(EventKeys.ConfigDataLoaded, response.Data.ConfigValue);
+                _configCache[key] = response.Data.configValue;
+                HorizonApp.Events.Publish(EventKeys.ConfigDataLoaded, response.Data.configValue);
 
-                return response.Data.ConfigValue;
+                return response.Data.configValue;
             }
             else
             {

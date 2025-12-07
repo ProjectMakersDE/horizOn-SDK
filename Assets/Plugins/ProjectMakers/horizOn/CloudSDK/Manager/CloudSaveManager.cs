@@ -40,8 +40,8 @@ namespace PM.horizOn.Cloud.Manager
 
             var request = new SaveCloudDataRequest
             {
-                UserId = PM.horizOn.Cloud.Manager.UserManager.Instance.CurrentUser.UserId,
-                SaveData = data
+                userId = PM.horizOn.Cloud.Manager.UserManager.Instance.CurrentUser.UserId,
+                saveData = data
             };
 
             var response = await HorizonApp.Network.PostAsync<SaveCloudSaveResponse>(
@@ -50,10 +50,10 @@ namespace PM.horizOn.Cloud.Manager
                 useSessionToken: false
             );
 
-            if (response.IsSuccess && response.Data != null && response.Data.Success)
+            if (response.IsSuccess && response.Data != null && response.Data.success)
             {
-                HorizonApp.Log.Info($"Cloud data saved: ({response.Data.DataSizeBytes} bytes)");
-                HorizonApp.Events.Publish(EventKeys.CloudSaveDataChanged, request.UserId);
+                HorizonApp.Log.Info($"Cloud data saved: ({response.Data.dataSizeBytes} bytes)");
+                HorizonApp.Events.Publish(EventKeys.CloudSaveDataChanged, request.userId);
                 return true;
             }
             else
@@ -77,7 +77,7 @@ namespace PM.horizOn.Cloud.Manager
 
             var request = new LoadCloudDataRequest
             {
-                UserId = PM.horizOn.Cloud.Manager.UserManager.Instance.CurrentUser.UserId
+                userId = PM.horizOn.Cloud.Manager.UserManager.Instance.CurrentUser.UserId
             };
 
             var response = await HorizonApp.Network.PostAsync<LoadCloudSaveResponse>(
@@ -86,15 +86,15 @@ namespace PM.horizOn.Cloud.Manager
                 useSessionToken: false
             );
 
-            if (response.IsSuccess && response.Data != null && response.Data.Found)
+            if (response.IsSuccess && response.Data != null && response.Data.found)
             {
-                string loadedData = response.Data.SaveData;
+                string loadedData = response.Data.saveData;
                 int sizeBytes = Encoding.UTF8.GetByteCount(loadedData);
 
                 HorizonApp.Log.Info($"Cloud data loaded: ({sizeBytes} bytes)");
                 HorizonApp.Events.Publish(EventKeys.CloudSaveDataLoaded, new CloudSaveLoadedData
                 {
-                    Key = request.UserId,
+                    Key = request.userId,
                     Data = loadedData,
                     SizeBytes = sizeBytes,
                     LastModified = ""
@@ -137,9 +137,9 @@ namespace PM.horizOn.Cloud.Manager
                 useSessionToken: false
             );
 
-            if (response.IsSuccess && response.Data != null && response.Data.Success)
+            if (response.IsSuccess && response.Data != null && response.Data.success)
             {
-                HorizonApp.Log.Info($"Cloud data saved (binary): ({response.Data.DataSizeBytes} bytes)");
+                HorizonApp.Log.Info($"Cloud data saved (binary): ({response.Data.dataSizeBytes} bytes)");
                 HorizonApp.Events.Publish(EventKeys.CloudSaveDataChanged, userId);
                 return true;
             }

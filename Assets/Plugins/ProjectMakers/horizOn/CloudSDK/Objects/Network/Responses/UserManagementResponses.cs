@@ -8,10 +8,10 @@ namespace PM.horizOn.Cloud.Objects.Network.Responses
     [Serializable]
     public class CheckAuthResponse
     {
-        public string UserId;
-        public bool IsAuthenticated;
-        public string AuthStatus; // AUTHENTICATED, TOKEN_EXPIRED, etc.
-        public string Message;
+        public string userId;
+        public bool isAuthenticated;
+        public string authStatus; // AUTHENTICATED, TOKEN_EXPIRED, etc.
+        public string message;
     }
 
     /// <summary>
@@ -20,7 +20,7 @@ namespace PM.horizOn.Cloud.Objects.Network.Responses
     [Serializable]
     public class MessageResponse
     {
-        public bool Success;
-        public string Message;
+        public bool success;
+        public string message;
     }
 }

@@ -8,11 +8,11 @@ namespace PM.horizOn.Cloud.Objects.Network.Requests
     [Serializable]
     public class SubmitFeedbackRequest
     {
-        public string UserId; // Required - User ID submitting feedback
-        public string Title; // Required, 1-100 characters
-        public string Category; // BUG, FEATURE, GENERAL
-        public string Message;
-        public string Email;
-        public string DeviceInfo;
+        public string userId; // Required - User ID submitting feedback
+        public string title; // Required, 1-100 characters
+        public string category; // BUG, FEATURE, GENERAL
+        public string message;
+        public string email;
+        public string deviceInfo;
     }
 }

@@ -10,9 +10,9 @@ namespace PM.horizOn.Cloud.Objects.Network.Responses
     [Serializable]
     public class GetRemoteConfigResponse
     {
-        public string ConfigKey;
-        public string ConfigValue;
-        public bool Found;
+        public string configKey;
+        public string configValue;
+        public bool found;
     }
 
     /// <summary>
@@ -23,7 +23,7 @@ namespace PM.horizOn.Cloud.Objects.Network.Responses
     [Serializable]
     public class GetAllRemoteConfigResponse
     {
-        public int Total;
+        public int total;
 
         // This will be populated by custom parsing
         [NonSerialized]
@@ -49,7 +49,7 @@ namespace PM.horizOn.Cloud.Objects.Network.Responses
             {
                 // Use Unity's simple JSON parser to get the structure
                 var wrapper = JsonUtility.FromJson<ResponseWrapper>(json);
-                response.Total = wrapper.Total;
+                response.total = wrapper.total;
 
                 // Manually parse the configs object
                 response._configs = new Dictionary<string, string>();
@@ -95,20 +95,21 @@ namespace PM.horizOn.Cloud.Objects.Network.Responses
 
             for (int i = 0; i < json.Length; i++)
             {
-                if (json[i] == '"' && (i == 0 || json[i - 1] != '\\'))
+                switch (json[i])
                 {
-                    inQuotes = !inQuotes;
-                }
-                else if (json[i] == ',' && !inQuotes)
-                {
-                    pairs.Add(json.Substring(start, i - start));
-                    start = i + 1;
+                    case '"' when (i == 0 || json[i - 1] != '\\'):
+                        inQuotes = !inQuotes;
+                        break;
+                    case ',' when !inQuotes:
+                        pairs.Add(json.Substring(start, i - start));
+                        start = i + 1;
+                        break;
                 }
             }
             // Add the last pair
             if (start < json.Length)
             {
-                pairs.Add(json.Substring(start));
+                pairs.Add(json[start..]);
             }
 
             // Parse each key-value pair
@@ -117,8 +118,8 @@ namespace PM.horizOn.Cloud.Objects.Network.Responses
                 int colonIndex = pair.IndexOf(':');
                 if (colonIndex > 0)
                 {
-                    string key = pair.Substring(0, colonIndex).Trim();
-                    string value = pair.Substring(colonIndex + 1).Trim();
+                    string key = pair[..colonIndex].Trim();
+                    string value = pair[(colonIndex + 1)..].Trim();
 
                     // Remove quotes
                     key = key.Trim('"');
@@ -145,13 +146,18 @@ namespace PM.horizOn.Cloud.Objects.Network.Responses
                 }
                 else if (!inQuotes)
                 {
-                    if (json[i] == '{')
-                        depth++;
-                    else if (json[i] == '}')
+                    switch (json[i])
                     {
-                        depth--;
-                        if (depth == 0)
-                            return i;
+                        case '{':
+                            depth++;
+                            break;
+                        case '}':
+                        {
+                            depth--;
+                            if (depth == 0)
+                                return i;
+                            break;
+                        }
                     }
                 }
             }
@@ -165,7 +171,7 @@ namespace PM.horizOn.Cloud.Objects.Network.Responses
         [Serializable]
         private class ResponseWrapper
         {
-            public int Total;
+            public int total;
         }
     }
 }

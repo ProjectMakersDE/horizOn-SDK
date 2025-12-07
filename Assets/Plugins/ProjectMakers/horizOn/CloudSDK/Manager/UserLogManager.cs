@@ -55,10 +55,10 @@ namespace PM.horizOn.Cloud.Manager
 
             var request = new CreateUserLogRequest
             {
-                Message = message,
-                Type = type.ToString(),
-                UserId = UserManager.Instance.CurrentUser.UserId,
-                ErrorCode = errorCode
+                message = message,
+                type = type.ToString(),
+                userId = UserManager.Instance.CurrentUser.UserId,
+                errorCode = errorCode
             };
 
             var response = await HorizonApp.Network.PostAsync<CreateUserLogResponse>(
@@ -67,7 +67,7 @@ namespace PM.horizOn.Cloud.Manager
                 useSessionToken: false
             );
 
-            if (response.IsSuccess && response.Data != null && !string.IsNullOrEmpty(response.Data.ID))
+            if (response.IsSuccess && response.Data != null && !string.IsNullOrEmpty(response.Data.id))
             {
                 HorizonApp.Events.Publish(EventKeys.LogCreated, response.Data);
                 return response.Data;

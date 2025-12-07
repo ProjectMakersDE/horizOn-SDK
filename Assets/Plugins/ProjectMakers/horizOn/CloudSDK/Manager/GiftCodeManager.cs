@@ -33,8 +33,8 @@ namespace PM.horizOn.Cloud.Manager
 
             var request = new RedeemGiftCodeRequest
             {
-                Code = code,
-                UserId = PM.horizOn.Cloud.Manager.UserManager.Instance.CurrentUser.UserId
+                code = code,
+                userId = PM.horizOn.Cloud.Manager.UserManager.Instance.CurrentUser.UserId
             };
 
             var response = await HorizonApp.Network.PostAsync<RedeemGiftCodeResponse>(
@@ -43,7 +43,7 @@ namespace PM.horizOn.Cloud.Manager
                 useSessionToken: false
             );
 
-            if (response.IsSuccess && response.Data != null && response.Data.Success)
+            if (response.IsSuccess && response.Data != null && response.Data.success)
             {
                 HorizonApp.Log.Info($"Gift code redeemed: {code}");
                 HorizonApp.Events.Publish(EventKeys.GiftCodeRedeemed, response.Data);
@@ -51,7 +51,7 @@ namespace PM.horizOn.Cloud.Manager
             }
             else
             {
-                HorizonApp.Log.Error($"Gift code redemption failed: {response.Error ?? response.Data?.Message}");
+                HorizonApp.Log.Error($"Gift code redemption failed: {response.Error ?? response.Data?.message}");
                 return null;
             }
         }
@@ -77,8 +77,8 @@ namespace PM.horizOn.Cloud.Manager
 
             var request = new RedeemGiftCodeRequest
             {
-                Code = code,
-                UserId = PM.horizOn.Cloud.Manager.UserManager.Instance.CurrentUser.UserId
+                code = code,
+                userId = PM.horizOn.Cloud.Manager.UserManager.Instance.CurrentUser.UserId
             };
 
             var response = await HorizonApp.Network.PostAsync<ValidateGiftCodeResponse>(
@@ -89,9 +89,9 @@ namespace PM.horizOn.Cloud.Manager
 
             if (response.IsSuccess && response.Data != null)
             {
-                HorizonApp.Log.Info($"Gift code validated: {code} (Valid: {response.Data.Valid})");
-                HorizonApp.Events.Publish(EventKeys.GiftCodeValidated, response.Data.Valid);
-                return response.Data.Valid;
+                HorizonApp.Log.Info($"Gift code validated: {code} (Valid: {response.Data.valid})");
+                HorizonApp.Events.Publish(EventKeys.GiftCodeValidated, response.Data.valid);
+                return response.Data.valid;
             }
             else
             {

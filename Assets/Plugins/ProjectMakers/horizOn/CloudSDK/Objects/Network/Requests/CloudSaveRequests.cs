@@ -8,8 +8,8 @@ namespace PM.horizOn.Cloud.Objects.Network.Requests
     [Serializable]
     public class SaveCloudDataRequest
     {
-        public string UserId;
-        public string SaveData; // UTF-8 string
+        public string userId;
+        public string saveData; // UTF-8 string
     }
 
     /// <summary>
@@ -18,6 +18,6 @@ namespace PM.horizOn.Cloud.Objects.Network.Requests
     [Serializable]
     public class LoadCloudDataRequest
     {
-        public string UserId;
+        public string userId;
     }
 }

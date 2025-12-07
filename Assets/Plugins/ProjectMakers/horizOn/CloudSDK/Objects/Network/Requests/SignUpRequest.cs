@@ -9,12 +9,12 @@ namespace PM.horizOn.Cloud.Objects.Network.Requests
     [Serializable]
     public class SignUpRequest
     {
-        public string Type; // ANONYMOUS, EMAIL, GOOGLE
-        public string Username;
-        public string Email;
-        public string Password;
-        public string AnonymousToken;
-        public string GoogleAuthorizationCode;
+        public string type; // ANONYMOUS, EMAIL, GOOGLE
+        public string username;
+        public string email;
+        public string password;
+        public string anonymousToken;
+        public string googleAuthorizationCode;
 
         public static SignUpRequest CreateAnonymous(string username = null, string anonymousToken = null)
         {
@@ -27,9 +27,9 @@ namespace PM.horizOn.Cloud.Objects.Network.Requests
 
             return new SignUpRequest
             {
-                Type = AuthType.ANONYMOUS.ToString(),
-                Username = username,
-                AnonymousToken = anonymousToken
+                type = nameof(AuthType.ANONYMOUS),
+                username = username,
+                anonymousToken = anonymousToken
             };
         }
 
@@ -37,10 +37,10 @@ namespace PM.horizOn.Cloud.Objects.Network.Requests
         {
             return new SignUpRequest
             {
-                Type = AuthType.EMAIL.ToString(),
-                Email = email,
-                Password = password,
-                Username = username
+                type = nameof(AuthType.EMAIL),
+                email = email,
+                password = password,
+                username = username
             };
         }
 
@@ -48,9 +48,9 @@ namespace PM.horizOn.Cloud.Objects.Network.Requests
         {
             return new SignUpRequest
             {
-                Type = AuthType.GOOGLE.ToString(),
-                GoogleAuthorizationCode = googleAuthorizationCode,
-                Username = username
+                type = nameof(AuthType.GOOGLE),
+                googleAuthorizationCode = googleAuthorizationCode,
+                username = username
             };
         }
     }

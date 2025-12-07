@@ -11,11 +11,11 @@ namespace PM.horizOn.Cloud.Objects.Network.Responses
         /// <summary>
         /// The unique ID of the created log entry.
         /// </summary>
-        public string ID;
+        public string id;
 
         /// <summary>
         /// Timestamp when the log was created (ISO 8601 format).
         /// </summary>
-        public string CreatedAt;
+        public string createdAt;
     }
 }

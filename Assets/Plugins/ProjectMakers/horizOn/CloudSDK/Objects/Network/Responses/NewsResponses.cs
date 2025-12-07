@@ -8,10 +8,10 @@ namespace PM.horizOn.Cloud.Objects.Network.Responses
     [Serializable]
     public class UserNewsResponse
     {
-        public string ID;
-        public string Title;
-        public string Message;
-        public string ReleaseDate;
-        public string LanguageCode;
+        public string id;
+        public string title;
+        public string message;
+        public string releaseDate;
+        public string languageCode;
     }
 }

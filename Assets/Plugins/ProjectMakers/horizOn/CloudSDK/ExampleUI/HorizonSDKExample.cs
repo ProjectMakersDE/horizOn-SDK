@@ -119,10 +119,10 @@ namespace PM.horizOn.Cloud.Examples
 
                 foreach (var entry in news)
                 {
-                    HorizonApp.Log.Info($"\n{entry.Title}");
-                    HorizonApp.Log.Info($"  {entry.Message}");
-                    HorizonApp.Log.Info($"  Released: {entry.ReleaseDate}");
-                    HorizonApp.Log.Info($"  Language: {entry.LanguageCode}");
+                    HorizonApp.Log.Info($"\n{entry.title}");
+                    HorizonApp.Log.Info($"  {entry.message}");
+                    HorizonApp.Log.Info($"  Released: {entry.releaseDate}");
+                    HorizonApp.Log.Info($"  Language: {entry.languageCode}");
                 }
             }
         }
@@ -148,7 +148,7 @@ namespace PM.horizOn.Cloud.Examples
                 HorizonApp.Log.Info($"\nTop {topPlayers.Count} players:");
                 foreach (var entry in topPlayers)
                 {
-                    HorizonApp.Log.Info($"{entry.Position}. {entry.Username}: {entry.Score}");
+                    HorizonApp.Log.Info($"{entry.position}. {entry.username}: {entry.score}");
                 }
             }
 
@@ -157,9 +157,9 @@ namespace PM.horizOn.Cloud.Examples
 
             if (rankResult != null)
             {
-                HorizonApp.Log.Info($"\nYour position: {rankResult.Position}");
-                HorizonApp.Log.Info($"Your score: {rankResult.Score}");
-                HorizonApp.Log.Info($"Username: {rankResult.Username}");
+                HorizonApp.Log.Info($"\nYour position: {rankResult.position}");
+                HorizonApp.Log.Info($"Your score: {rankResult.score}");
+                HorizonApp.Log.Info($"Username: {rankResult.username}");
             }
 
             // Get entries around user
@@ -170,7 +170,7 @@ namespace PM.horizOn.Cloud.Examples
                 HorizonApp.Log.Info($"\nEntries around you:");
                 foreach (var entry in nearby)
                 {
-                    HorizonApp.Log.Info($"{entry.Position}. {entry.Username}: {entry.Score}");
+                    HorizonApp.Log.Info($"{entry.position}. {entry.username}: {entry.score}");
                 }
             }
         }

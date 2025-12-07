@@ -752,10 +752,10 @@ namespace PM.horizOn.Cloud.ExampleUI
                 string response = $"Loaded {news.Count} news entries:\n\n";
                 foreach (var entry in news)
                 {
-                    response += $"{entry.Title}\n";
-                    response += $"  {entry.Message}\n";
-                    response += $"  Released: {entry.ReleaseDate}\n";
-                    response += $"  Language: {entry.LanguageCode}\n\n";
+                    response += $"{entry.title}\n";
+                    response += $"  {entry.message}\n";
+                    response += $"  Released: {entry.releaseDate}\n";
+                    response += $"  Language: {entry.languageCode}\n\n";
                 }
                 _txtNewsResponse.value = response;
             }
@@ -803,7 +803,7 @@ namespace PM.horizOn.Cloud.ExampleUI
                 string response = $"Top {entries.Count} players:\n\n";
                 foreach (var entry in entries)
                 {
-                    response += $"{entry.Position}. {entry.Username}: {entry.Score}\n";
+                    response += $"{entry.position}. {entry.username}: {entry.score}\n";
                 }
                 _txtLeaderboardResponse.value = response;
             }
@@ -820,7 +820,7 @@ namespace PM.horizOn.Cloud.ExampleUI
 
             if (result != null)
             {
-                _txtLeaderboardResponse.value = $"Your Position: {result.Position}\nYour Score: {result.Score}\nUsername: {result.Username}";
+                _txtLeaderboardResponse.value = $"Your Position: {result.position}\nYour Score: {result.score}\nUsername: {result.username}";
             }
             else
             {
@@ -838,7 +838,7 @@ namespace PM.horizOn.Cloud.ExampleUI
                 string response = $"Players around you:\n\n";
                 foreach (var entry in entries)
                 {
-                    response += $"{entry.Position}. {entry.Username}: {entry.Score}\n";
+                    response += $"{entry.position}. {entry.username}: {entry.score}\n";
                 }
                 _txtLeaderboardResponse.value = response;
             }
@@ -983,13 +983,13 @@ namespace PM.horizOn.Cloud.ExampleUI
             _txtGiftCodeResponse.value = "Redeeming code...";
             var result = await GiftCodeManager.Instance.Redeem(code);
 
-            if (result != null && result.Success)
+            if (result != null && result.success)
             {
-                _txtGiftCodeResponse.value = $"Code redeemed successfully!\n\nGift Data:\n{result.GiftData}";
+                _txtGiftCodeResponse.value = $"Code redeemed successfully!\n\nGift Data:\n{result.giftData}";
             }
             else
             {
-                _txtGiftCodeResponse.value = result != null ? $"Redemption failed: {result.Message}" : "Redemption failed";
+                _txtGiftCodeResponse.value = result != null ? $"Redemption failed: {result.message}" : "Redemption failed";
             }
         }
 
@@ -1078,7 +1078,7 @@ namespace PM.horizOn.Cloud.ExampleUI
 
             if (result != null)
             {
-                _txtUserLogResponse.value = $"Log created successfully!\n\nID: {result.ID}\nCreated At: {result.CreatedAt}\nType: {logType}\nMessage: {message}";
+                _txtUserLogResponse.value = $"Log created successfully!\n\nID: {result.id}\nCreated At: {result.createdAt}\nType: {logType}\nMessage: {message}";
                 if (!string.IsNullOrEmpty(errorCode))
                 {
                     _txtUserLogResponse.value += $"\nError Code: {errorCode}";

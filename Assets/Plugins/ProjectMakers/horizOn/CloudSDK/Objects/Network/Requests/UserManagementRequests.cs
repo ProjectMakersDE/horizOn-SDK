@@ -8,8 +8,8 @@ namespace PM.horizOn.Cloud.Objects.Network.Requests
     [Serializable]
     public class CheckAuthRequest
     {
-        public string UserId;
-        public string SessionToken;
+        public string userId;
+        public string sessionToken;
     }
 
     /// <summary>
@@ -18,7 +18,7 @@ namespace PM.horizOn.Cloud.Objects.Network.Requests
     [Serializable]
     public class VerifyEmailRequest
     {
-        public string Token;
+        public string token;
     }
 
     /// <summary>
@@ -27,7 +27,7 @@ namespace PM.horizOn.Cloud.Objects.Network.Requests
     [Serializable]
     public class ForgotPasswordRequest
     {
-        public string Email;
+        public string email;
     }
 
     /// <summary>
@@ -36,8 +36,8 @@ namespace PM.horizOn.Cloud.Objects.Network.Requests
     [Serializable]
     public class ResetPasswordRequest
     {
-        public string Token;
-        public string NewPassword;
+        public string token;
+        public string newPassword;
     }
 
     /// <summary>
@@ -46,8 +46,8 @@ namespace PM.horizOn.Cloud.Objects.Network.Requests
     [Serializable]
     public class ChangeNameRequest
     {
-        public string UserId;
-        public string SessionToken;
-        public string NewName;
+        public string userId;
+        public string sessionToken;
+        public string newName;
     }
 }

@@ -8,10 +8,10 @@ namespace PM.horizOn.Cloud.Objects.Network.Requests
     [Serializable]
     public class SignInRequest
     {
-        public string Type; // EMAIL, ANONYMOUS, or GOOGLE
-        public string Email;
-        public string Password;
-        public string AnonymousToken;
-        public string GoogleAuthorizationCode;
+        public string type; // EMAIL, ANONYMOUS, or GOOGLE
+        public string email;
+        public string password;
+        public string anonymousToken;
+        public string googleAuthorizationCode;
     }
 }

@@ -11,21 +11,21 @@ namespace PM.horizOn.Cloud.Objects.Network.Requests
         /// <summary>
         /// Log message (max 1000 characters)
         /// </summary>
-        public string Message;
+        public string message;
 
         /// <summary>
         /// Log type: INFO, WARN, or ERROR
         /// </summary>
-        public string Type;
+        public string type;
 
         /// <summary>
         /// User ID who created the log
         /// </summary>
-        public string UserId;
+        public string userId;
 
         /// <summary>
         /// Optional error code (max 50 characters)
         /// </summary>
-        public string ErrorCode;
+        public string errorCode;
     }
 }

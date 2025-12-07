@@ -9,9 +9,7 @@ namespace PM.horizOn.Cloud.Objects.Network.Requests
     [Serializable]
     public class SubmitScoreRequest
     {
-        public string UserId;
-        public string Username;
-        public long Score;
-        public string Metadata; // JSON string
+        public string userId;
+        public long score;
     }
 }

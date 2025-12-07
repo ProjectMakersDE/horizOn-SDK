@@ -8,8 +8,8 @@ namespace PM.horizOn.Cloud.Objects.Network.Requests
     [Serializable]
     public class RedeemGiftCodeRequest
     {
-        public string Code;
-        public string UserId;
+        public string code;
+        public string userId;
     }
 
     /// <summary>
@@ -18,7 +18,7 @@ namespace PM.horizOn.Cloud.Objects.Network.Requests
     [Serializable]
     public class ValidateGiftCodeRequest
     {
-        public string Code;
-        public string UserId;
+        public string code;
+        public string userId;
     }
 }

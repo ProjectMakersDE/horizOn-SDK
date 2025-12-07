@@ -8,9 +8,9 @@ namespace PM.horizOn.Cloud.Objects.Network.Responses
     [Serializable]
     public class RedeemGiftCodeResponse
     {
-        public bool Success;
-        public string Message;
-        public string GiftData; // JSON string containing gift data
+        public bool success;
+        public string message;
+        public string giftData; // JSON string containing gift data
     }
 
     /// <summary>
@@ -19,6 +19,6 @@ namespace PM.horizOn.Cloud.Objects.Network.Responses
     [Serializable]
     public class ValidateGiftCodeResponse
     {
-        public bool Valid;
+        public bool valid;
     }
 }

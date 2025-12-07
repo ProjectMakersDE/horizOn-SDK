@@ -8,16 +8,16 @@ namespace PM.horizOn.Cloud.Objects.Network.Responses
     [Serializable]
     public class AuthResponse
     {
-        public string UserId;
-        public string Username;
-        public string Email;
-        public string AccessToken;
-        public string AuthStatus; // AUTHENTICATED, USER_NOT_FOUND, etc.
-        public string Message;
-        public bool IsAnonymous;
-        public bool IsVerified;
-        public string AnonymousToken;
-        public string GoogleId;
-        public string CreatedAt;
+        public string userId;
+        public string username;
+        public string email;
+        public string accessToken;
+        public string authStatus; // AUTHENTICATED, USER_NOT_FOUND, etc.
+        public string message;
+        public bool isAnonymous;
+        public bool isVerified;
+        public string anonymousToken;
+        public string googleId;
+        public string createdAt;
     }
 }

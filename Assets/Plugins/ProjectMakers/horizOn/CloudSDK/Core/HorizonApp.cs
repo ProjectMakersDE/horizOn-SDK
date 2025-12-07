@@ -63,17 +63,23 @@ namespace PM.horizOn.Cloud.Core
                 // Add HorizonApp component
                 Instance = _sdkGameObject.AddComponent<HorizonApp>();
 
-                Log.Info("=== horizOn SDK Initialization Started ===");
+                var log = LogService.Instance;
+                log.Initialize(HorizonConfig.Load());
+                
+                var events = EventService.Instance;
+                var network = NetworkService.Instance;
+                
+                log.Info("=== horizOn SDK Initialization Started ===");
 
                 // Services are now ready
-                Events.Publish(EventKeys.ServiceInitialized, "EventService");
-                Events.Publish(EventKeys.ServiceInitialized, "LogService");
-                Events.Publish(EventKeys.ServiceInitialized, "NetworkService");
+                events.Publish(EventKeys.ServiceInitialized, "EventService");
+                events.Publish(EventKeys.ServiceInitialized, "LogService");
+                events.Publish(EventKeys.ServiceInitialized, "NetworkService");
 
                 IsInitialized = true;
 
-                Log.Info("=== horizOn SDK Initialization Complete ===");
-                Events.Publish(EventKeys.SDKInitialized, DateTime.UtcNow);
+                log.Info("=== horizOn SDK Initialization Complete ===");
+                events.Publish(EventKeys.SDKInitialized, DateTime.UtcNow);
 
                 return true;
             }

@@ -254,8 +254,8 @@ namespace PM.horizOn.Cloud.Service
                             {
                                 var messageResponse = new MessageResponse
                                 {
-                                    Success = true,
-                                    Message = responseText
+                                    success = true,
+                                    message = responseText
                                 };
                                 data = messageResponse as TResponse;
                             }

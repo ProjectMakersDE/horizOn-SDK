@@ -8,8 +8,8 @@ namespace PM.horizOn.Cloud.Objects.Network.Responses
     [Serializable]
     public class SaveCloudSaveResponse
     {
-        public bool Success;
-        public int DataSizeBytes;
+        public bool success;
+        public int dataSizeBytes;
     }
 
     /// <summary>
@@ -18,7 +18,7 @@ namespace PM.horizOn.Cloud.Objects.Network.Responses
     [Serializable]
     public class LoadCloudSaveResponse
     {
-        public bool Found;
-        public string SaveData; // UTF-8 string
+        public bool found;
+        public string saveData; // UTF-8 string
     }
 }

@@ -108,19 +108,19 @@ namespace PM.horizOn.Cloud.Manager
 
             var response = await HorizonApp.Network.PostAsync<AuthResponse>("/api/v1/app/user-management/signup", request);
 
-            if (response.IsSuccess && response.Data != null && !string.IsNullOrEmpty(response.Data.UserId))
+            if (response.IsSuccess && response.Data != null && !string.IsNullOrEmpty(response.Data.userId))
             {
                 UpdateCurrentUser(response.Data);
                 CacheSession();
 
-                HorizonApp.Log.Info($"User signed up successfully: {response.Data.UserId}");
+                HorizonApp.Log.Info($"User signed up successfully: {response.Data.userId}");
                 HorizonApp.Events.Publish(EventKeys.UserSignUpSuccess, _currentUser);
 
                 return true;
             }
             else
             {
-                string errorMessage = response.Error ?? response.Data?.Message;
+                string errorMessage = response.Error ?? response.Data?.message;
 
                 // Provide more specific error messages based on status code
                 if (response.StatusCode == 409)
@@ -153,9 +153,9 @@ namespace PM.horizOn.Cloud.Manager
 
             var request = new SignInRequest
             {
-                Email = email,
-                Password = password,
-                Type = AuthType.EMAIL.ToString()
+                email = email,
+                password = password,
+                type = AuthType.EMAIL.ToString()
             };
 
             return await SignIn(request);
@@ -176,8 +176,8 @@ namespace PM.horizOn.Cloud.Manager
 
             var request = new SignInRequest
             {
-                GoogleAuthorizationCode = googleAuthorizationCode,
-                Type = AuthType.GOOGLE.ToString()
+                googleAuthorizationCode = googleAuthorizationCode,
+                type = AuthType.GOOGLE.ToString()
             };
 
             return await SignIn(request);
@@ -198,8 +198,8 @@ namespace PM.horizOn.Cloud.Manager
 
             var request = new SignInRequest
             {
-                AnonymousToken = anonymousToken,
-                Type = AuthType.ANONYMOUS.ToString()
+                anonymousToken = anonymousToken,
+                type = AuthType.ANONYMOUS.ToString()
             };
 
             return await SignIn(request);
@@ -232,20 +232,20 @@ namespace PM.horizOn.Cloud.Manager
 
             var response = await HorizonApp.Network.PostAsync<AuthResponse>("/api/v1/app/user-management/signin", request);
 
-            if (response.IsSuccess && response.Data != null && response.Data.AuthStatus == "AUTHENTICATED")
+            if (response.IsSuccess && response.Data != null && response.Data.authStatus == "AUTHENTICATED")
             {
                 UpdateCurrentUser(response.Data);
                 CacheSession();
 
-                HorizonApp.Log.Info($"User signed in successfully: {response.Data.UserId}");
+                HorizonApp.Log.Info($"User signed in successfully: {response.Data.userId}");
                 HorizonApp.Events.Publish(EventKeys.UserSignInSuccess, _currentUser);
 
                 return true;
             }
             else
             {
-                HorizonApp.Log.Error($"Signin failed: {response.Error ?? response.Data?.Message}");
-                HorizonApp.Events.Publish(EventKeys.UserSignInFailed, response.Error ?? response.Data?.Message);
+                HorizonApp.Log.Error($"Signin failed: {response.Error ?? response.Data?.message}");
+                HorizonApp.Events.Publish(EventKeys.UserSignInFailed, response.Error ?? response.Data?.message);
 
                 return false;
             }
@@ -267,13 +267,13 @@ namespace PM.horizOn.Cloud.Manager
 
             var request = new CheckAuthRequest
             {
-                UserId = _currentUser.UserId,
-                SessionToken = _currentUser.AccessToken
+                userId = _currentUser.UserId,
+                sessionToken = _currentUser.AccessToken
             };
 
             var response = await HorizonApp.Network.PostAsync<CheckAuthResponse>("/api/v1/app/user-management/check-auth", request);
 
-            if (response.IsSuccess && response.Data != null && response.Data.IsAuthenticated)
+            if (response.IsSuccess && response.Data != null && response.Data.isAuthenticated)
             {
                 HorizonApp.Log.Info("Session token is valid");
                 HorizonApp.Events.Publish(EventKeys.UserAuthCheckSuccess, _currentUser);
@@ -303,11 +303,11 @@ namespace PM.horizOn.Cloud.Manager
                 return false;
             }
 
-            var request = new VerifyEmailRequest { Token = token };
+            var request = new VerifyEmailRequest { token = token };
 
             var response = await HorizonApp.Network.PostAsync<MessageResponse>("/api/v1/app/user-management/verify-email", request);
 
-            if (response.IsSuccess && response.Data.Success)
+            if (response.IsSuccess && response.Data.success)
             {
                 if (_currentUser != null)
                 {
@@ -322,7 +322,7 @@ namespace PM.horizOn.Cloud.Manager
             }
             else
             {
-                HorizonApp.Log.Error($"Email verification failed: {response.Error ?? response.Data?.Message}");
+                HorizonApp.Log.Error($"Email verification failed: {response.Error ?? response.Data?.message}");
                 return false;
             }
         }
@@ -342,11 +342,11 @@ namespace PM.horizOn.Cloud.Manager
                 return false;
             }
 
-            var request = new ForgotPasswordRequest { Email = email };
+            var request = new ForgotPasswordRequest { email = email };
 
             var response = await HorizonApp.Network.PostAsync<MessageResponse>("/api/v1/app/user-management/forgot-password", request);
 
-            if (response.IsSuccess && response.Data.Success)
+            if (response.IsSuccess && response.Data.success)
             {
                 HorizonApp.Log.Info("Password reset email sent");
                 HorizonApp.Events.Publish(EventKeys.UserPasswordResetRequested, email);
@@ -355,7 +355,7 @@ namespace PM.horizOn.Cloud.Manager
             }
             else
             {
-                HorizonApp.Log.Error($"Password reset request failed: {response.Error ?? response.Data?.Message}");
+                HorizonApp.Log.Error($"Password reset request failed: {response.Error ?? response.Data?.message}");
                 return false;
             }
         }
@@ -376,13 +376,13 @@ namespace PM.horizOn.Cloud.Manager
 
             var request = new ResetPasswordRequest
             {
-                Token = token,
-                NewPassword = newPassword
+                token = token,
+                newPassword = newPassword
             };
 
             var response = await HorizonApp.Network.PostAsync<MessageResponse>("/api/v1/app/user-management/reset-password", request);
 
-            if (response.IsSuccess && response.Data.Success)
+            if (response.IsSuccess && response.Data.success)
             {
                 HorizonApp.Log.Info("Password reset successful");
                 HorizonApp.Events.Publish(EventKeys.UserPasswordResetSuccess, token);
@@ -391,7 +391,7 @@ namespace PM.horizOn.Cloud.Manager
             }
             else
             {
-                HorizonApp.Log.Error($"Password reset failed: {response.Error ?? response.Data?.Message}");
+                HorizonApp.Log.Error($"Password reset failed: {response.Error ?? response.Data?.message}");
                 return false;
             }
         }
@@ -419,14 +419,14 @@ namespace PM.horizOn.Cloud.Manager
 
             var request = new ChangeNameRequest
             {
-                UserId = _currentUser.UserId,
-                SessionToken = _currentUser.AccessToken,
-                NewName = newName
+                userId = _currentUser.UserId,
+                sessionToken = _currentUser.AccessToken,
+                newName = newName
             };
 
             var response = await HorizonApp.Network.PostAsync<CheckAuthResponse>("/api/v1/app/user-management/change-name", request);
 
-            if (response.IsSuccess && response.Data != null && response.Data.IsAuthenticated)
+            if (response.IsSuccess && response.Data != null && response.Data.isAuthenticated)
             {
                 _currentUser.DisplayName = newName;
                 CacheSession();
@@ -438,7 +438,7 @@ namespace PM.horizOn.Cloud.Manager
             }
             else
             {
-                HorizonApp.Log.Error($"Name change failed: {response.Error ?? response.Data?.AuthStatus ?? response.Data?.Message}");
+                HorizonApp.Log.Error($"Name change failed: {response.Error ?? response.Data?.authStatus ?? response.Data?.message}");
                 return false;
             }
         }
@@ -490,26 +490,26 @@ namespace PM.horizOn.Cloud.Manager
                 _currentUser = new UserData();
             }
 
-            _currentUser.UserId = response.UserId;
-            _currentUser.Email = response.Email ?? string.Empty;
-            _currentUser.DisplayName = response.Username ?? string.Empty;
-            _currentUser.AuthType = response.IsAnonymous ? "ANONYMOUS" : (!string.IsNullOrEmpty(response.GoogleId) ? "GOOGLE" : "EMAIL");
-            _currentUser.AccessToken = response.AccessToken ?? string.Empty;
-            _currentUser.AnonymousToken = response.AnonymousToken ?? string.Empty;
-            _currentUser.IsEmailVerified = response.IsVerified;
-            _currentUser.IsAnonymous = response.IsAnonymous;
+            _currentUser.UserId = response.userId;
+            _currentUser.Email = response.email ?? string.Empty;
+            _currentUser.DisplayName = response.username ?? string.Empty;
+            _currentUser.AuthType = response.isAnonymous ? "ANONYMOUS" : (!string.IsNullOrEmpty(response.googleId) ? "GOOGLE" : "EMAIL");
+            _currentUser.AccessToken = response.accessToken ?? string.Empty;
+            _currentUser.AnonymousToken = response.anonymousToken ?? string.Empty;
+            _currentUser.IsEmailVerified = response.isVerified;
+            _currentUser.IsAnonymous = response.isAnonymous;
             _currentUser.LastLoginTime = DateTime.UtcNow;
 
             // Set session token in network service
-            if (NetworkService.Instance != null && !string.IsNullOrEmpty(response.AccessToken))
+            if (NetworkService.Instance != null && !string.IsNullOrEmpty(response.accessToken))
             {
-                NetworkService.Instance.SetSessionToken(response.AccessToken);
+                NetworkService.Instance.SetSessionToken(response.accessToken);
             }
 
             // Save anonymous token separately for future sign-in
-            if (response.IsAnonymous && !string.IsNullOrEmpty(response.AnonymousToken))
+            if (response.isAnonymous && !string.IsNullOrEmpty(response.anonymousToken))
             {
-                SaveAnonymousToken(response.AnonymousToken);
+                SaveAnonymousToken(response.anonymousToken);
             }
 
             HorizonApp.Events.Publish(EventKeys.UserDataChanged, _currentUser);

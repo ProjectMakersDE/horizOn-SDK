@@ -8,9 +8,9 @@ namespace PM.horizOn.Cloud.Objects.Network.Responses
     [Serializable]
     public class SimpleLeaderboardEntry
     {
-        public long Position;
-        public string Username;
-        public long Score;
+        public long position;
+        public string username;
+        public long score;
     }
 
     /// <summary>
@@ -28,7 +28,7 @@ namespace PM.horizOn.Cloud.Objects.Network.Responses
     [Serializable]
     public class AppLeaderboardTopResponse
     {
-        public SimpleLeaderboardEntry[] Entries;
+        public SimpleLeaderboardEntry[] entries;
     }
 
     /// <summary>
@@ -37,9 +37,9 @@ namespace PM.horizOn.Cloud.Objects.Network.Responses
     [Serializable]
     public class AppUserRankResponse
     {
-        public long Position;
-        public string Username;
-        public long Score;
+        public long position;
+        public string username;
+        public long score;
     }
 
     /// <summary>
@@ -48,6 +48,6 @@ namespace PM.horizOn.Cloud.Objects.Network.Responses
     [Serializable]
     public class AppLeaderboardAroundResponse
     {
-        public SimpleLeaderboardEntry[] Entries;
+        public SimpleLeaderboardEntry[] entries;
     }
 }

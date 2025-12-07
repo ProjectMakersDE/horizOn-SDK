@@ -35,10 +35,8 @@ namespace PM.horizOn.Cloud.Manager
 
             var request = new SubmitScoreRequest
             {
-                UserId = user.UserId,
-                Username = user.DisplayName,
-                Score = score,
-                Metadata = metadata
+                userId = user.UserId,
+                score = score,
             };
 
             var response = await HorizonApp.Network.PostAsync<SubmitScoreResponse>(
@@ -99,9 +97,9 @@ namespace PM.horizOn.Cloud.Manager
                 useSessionToken: false
             );
 
-            if (response.IsSuccess && response.Data != null && response.Data.Entries != null)
+            if (response.IsSuccess && response.Data != null && response.Data.entries != null)
             {
-                var entries = new List<SimpleLeaderboardEntry>(response.Data.Entries);
+                var entries = new List<SimpleLeaderboardEntry>(response.Data.entries);
 
                 // Cache the results
                 _leaderboardCache[cacheKey] = entries;
@@ -139,7 +137,7 @@ namespace PM.horizOn.Cloud.Manager
 
             if (response.IsSuccess && response.Data != null)
             {
-                HorizonApp.Log.Info($"User rank: {response.Data.Position} (Score: {response.Data.Score})");
+                HorizonApp.Log.Info($"User rank: {response.Data.position} (Score: {response.Data.score})");
                 return response.Data;
             }
             else
@@ -178,9 +176,9 @@ namespace PM.horizOn.Cloud.Manager
                 useSessionToken: false
             );
 
-            if (response.IsSuccess && response.Data != null && response.Data.Entries != null)
+            if (response.IsSuccess && response.Data != null && response.Data.entries != null)
             {
-                var entries = new List<SimpleLeaderboardEntry>(response.Data.Entries);
+                var entries = new List<SimpleLeaderboardEntry>(response.Data.entries);
 
                 // Cache the results
                 _leaderboardCache[cacheKey] = entries;

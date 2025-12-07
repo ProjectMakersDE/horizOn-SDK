@@ -76,7 +76,7 @@ namespace PM.horizOn.Cloud.Manager
         {
             foreach (var entry in _newsCache)
             {
-                if (entry.ID == id)
+                if (entry.id == id)
                 {
                     return entry;
                 }

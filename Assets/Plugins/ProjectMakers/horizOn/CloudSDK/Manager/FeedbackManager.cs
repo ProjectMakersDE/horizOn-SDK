@@ -55,12 +55,12 @@ namespace PM.horizOn.Cloud.Manager
 
             var request = new SubmitFeedbackRequest
             {
-                UserId = userId,
-                Title = title,
-                Category = category ?? "GENERAL",
-                Message = message,
-                Email = email,
-                DeviceInfo = deviceInfo
+                userId = userId,
+                title = title,
+                category = category ?? "GENERAL",
+                message = message,
+                email = email,
+                deviceInfo = deviceInfo
             };
 
             var response = await HorizonApp.Network.PostAsync<MessageResponse>(
@@ -69,7 +69,7 @@ namespace PM.horizOn.Cloud.Manager
                 useSessionToken: false
             );
 
-            if (response.IsSuccess && response.Data.Success)
+            if (response.IsSuccess && response.Data.success)
             {
                 HorizonApp.Log.Info("Feedback submitted successfully");
                 HorizonApp.Events.Publish(EventKeys.FeedbackSubmitted, request);
@@ -77,7 +77,7 @@ namespace PM.horizOn.Cloud.Manager
             }
             else
             {
-                HorizonApp.Log.Error($"Feedback submission failed: {response.Error ?? response.Data?.Message}");
+                HorizonApp.Log.Error($"Feedback submission failed: {response.Error ?? response.Data?.message}");
                 return false;
             }
         }

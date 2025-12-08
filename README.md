@@ -31,7 +31,7 @@ See **[QUICKSTART.md](QUICKSTART.md)** for step-by-step setup instructions.
 | **News** | `NewsManager` | In-game announcements |
 | **Gift Codes** | `GiftCodeManager` | Promotional code redemption |
 | **Feedback** | `FeedbackManager` | Bug reports and feature requests |
-| **User Logs** | `UserLogManager` | Server-side logging (Pro tier) |
+| **User Logs** | `UserLogManager` | Server-side logging |
 
 ---
 
